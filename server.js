@@ -28,7 +28,21 @@ const app = express();
 
 
 /* ================= MIDDLEWARE ================= */
-app.use(cors()); // frontend ko backend access dene ke liye
+// CORS configuration for production
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [
+        'https://swasthai.vercel.app',
+        'https://swasthai-frontend.vercel.app',
+        /\.vercel\.app$/  // Allow all Vercel preview deployments
+      ]
+    : 'http://localhost:5173',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions)); // frontend ko backend access dene ke liye
 app.use(express.json()); // JSON data read karne ke liye
 app.use(requestLogger); // Request logging
 
