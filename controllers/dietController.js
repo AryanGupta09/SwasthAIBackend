@@ -401,9 +401,6 @@ Example for Eggetarian:
         }
       });
       console.log("Latest diet plan saved to user profile");
-    } catch (userUpdateError) {
-      console.error("Failed to update user diet plan:", userUpdateError);
-      // Don't fail the request if user update fails
     }
 
     res.json(diet);

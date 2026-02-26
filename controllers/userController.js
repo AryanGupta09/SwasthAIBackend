@@ -19,14 +19,9 @@ export const getUserProfile = async (req, res) => {
 /* ================= UPDATE USER PROFILE ================= */
 export const updateUserProfile = async (req, res) => {
   try {
-    console.log("=== UPDATE PROFILE REQUEST ===");
-    console.log("User ID:", req.userId);
-    console.log("Request Body:", req.body);
-
     const user = await User.findById(req.userId);
     
     if (!user) {
-      console.log("User not found");
       return res.status(404).json({ message: "User not found" });
     }
 
@@ -59,9 +54,7 @@ export const updateUserProfile = async (req, res) => {
       }
     }
 
-    console.log("Saving user...");
     await user.save();
-    console.log("User saved successfully");
 
     const updatedUser = await User.findById(req.userId).select("-password");
     
@@ -70,8 +63,7 @@ export const updateUserProfile = async (req, res) => {
       user: updatedUser
     });
   } catch (error) {
-    console.error("=== UPDATE PROFILE ERROR ===");
-    console.error("Error:", error);
+    console.error("Update Profile Error:", error.message);
     
     res.status(500).json({ 
       message: "Failed to update profile",
