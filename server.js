@@ -8,6 +8,7 @@ import cors from "cors";
 // Import configurations and utilities
 import { connectDatabase } from "./config/database.js";
 import { validateEnv } from "./utils/validateEnv.js";
+import { startKeepAlive } from "./utils/keepAlive.js";
 
 // Import routes
 import authRoutes from "./routes/authRoutes.js";
@@ -72,4 +73,7 @@ app.use(errorHandler); // Global error handler
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  
+  // Start keep-alive service to prevent Render free tier sleep
+  startKeepAlive();
 });
