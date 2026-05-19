@@ -1,17 +1,38 @@
-# Dependencies
-node_modules/
-
 # Environment variables
 .env
 .env.local
 .env.*.local
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
 # Logs
-logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+logs/
 
 # OS files
 .DS_Store
@@ -23,6 +44,5 @@ Thumbs.db
 *.swp
 *.swo
 
-# Build
-dist/
-build/
+# Node (leftover)
+node_modules/
